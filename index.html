@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input class="form-control" type="text" id="txtGenerate">
+                    <button class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input class="form-control" type="text" id="txtTypeNumber">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div class="button" id="seven">7</div>
+                              <div class="button" id="eight">8</div>
+                              <div class="button" id="nine">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" id="four">4</div>
+                                <div class="button" id="five">5</div>
+                                <div class="button" id="six">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" id="one">1</div>
+                                <div class="button" id="two">2</div>
+                                <div class="button" id="three">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" id="backSpace"><</div>
+                                <div class="button" id="zero">0</div>
+                                <div class="button" id="clr">C</div>
+                            </div>
+                            <div>
+                                <button type="submit" class="submit-btn">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p class="notify" id="didNotMatch">❌ Pin Didn't Match, Please try again</p>
+            <p class="notify" id="match">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        var randomValue = 0;
+        var value = 0;
+        $(".notify").hide();
+
+        $(".generate-btn").click(function () {
+            randomValue = Math.floor(Math.random() * 9999) + 1000;
+            $("#txtGenerate").val(randomValue);
+            value = 0;
+            $("#txtTypeNumber").val("");
+            $(".notify").hide();
+        });
+
+        /*$(".calc-body").click(function () {
+            var value = 0;
+            var text = $(this).text();
+            $("#txtTypeNumber").val(text);
+            //alert(text);
+        });*/
+
+        $("#seven").click(function () {
+            if (value == 0)
+            {
+                value = $(this).text();
+            }
+            else
+            {
+                value += $(this).text();
+            }            
+            $("#txtTypeNumber").val(value);
+        });
+        $("#eight").click(function () {
+            if (value == 0) {
+                value = $(this).text();
+            }
+            else {
+                value += $(this).text();
+            }
+            $("#txtTypeNumber").val(value);
+        });
+        $("#nine").click(function () {
+            if (value == 0) {
+                value = $(this).text();
+            }
+            else {
+                value += $(this).text();
+            }
+            $("#txtTypeNumber").val(value);
+        });
+
+        $("#four").click(function () {
+            if (value == 0) {
+                value = $(this).text();
+            }
+            else {
+                value += $(this).text();
+            }
+            $("#txtTypeNumber").val(value);
+        });
+        $("#five").click(function () {
+            if (value == 0) {
+                value = $(this).text();
+            }
+            else {
+                value += $(this).text();
+            }
+            $("#txtTypeNumber").val(value);
+        });
+        $("#six").click(function () {
+            if (value == 0) {
+                value = $(this).text();
+            }
+            else {
+                value += $(this).text();
+            }
+            $("#txtTypeNumber").val(value);
+        });
+
+        $("#one").click(function () {
+            if (value == 0) {
+                value = $(this).text();
+            }
+            else {
+                value += $(this).text();
+            }
+            $("#txtTypeNumber").val(value);
+        });
+        $("#two").click(function () {
+            if (value == 0) {
+                value = $(this).text();
+            }
+            else {
+                value += $(this).text();
+            }
+            $("#txtTypeNumber").val(value);
+        });
+        $("#three").click(function () {
+            if (value == 0) {
+                value = $(this).text();
+            }
+            else {
+                value += $(this).text();
+            }
+            $("#txtTypeNumber").val(value);
+        });
+
+        $("#backSpace").click(function () {
+            //alert(value);
+            if(value != 0)
+            {
+                value = Math.floor(value / 10);
+            }
+            $("#txtTypeNumber").val(value);
+        });
+        $("#zero").click(function () {
+            if (value == 0) {
+                value = $(this).text();
+            }
+            else {
+                value += $(this).text();
+            }
+            $("#txtTypeNumber").val(value);
+        });
+        $("#clr").click(function () {
+            value = 0;
+            $("#txtTypeNumber").val("");
+        });
+
+        $(".submit-btn").click(function () {
+            if(randomValue == value)
+            {
+                $(".notify").hide();
+                $("#match").show();
+            }
+            else
+            {
+                $(".notify").hide();
+                $("#didNotMatch").show();
+            }
+        });
+
+
+    });
+</script>
